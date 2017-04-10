@@ -1,0 +1,33 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Home</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<div>
+		<input [(ngModel)]="firstStuff" name="firstStuff" type="text" placeholder="first thing" />
+		<input [(ngModel)]="secondStuff" name="secodeStuff" type="text" placeholder="second thing" />
+		<button (click)="saveStuff()">Add</button>
+	</div>
+
+	<div>
+		<div *ngFor="let thing of things">
+			<ion-row>
+				<ion-col width-33>
+					{{thing.id}}
+				</ion-col>
+				<ion-col width-33>
+					{{thing.firstStuff}}
+				</ion-col>
+				<ion-col width-33>
+					{{thing.secondStuff}}
+				</ion-col>
+			</ion-row>
+		</div>
+	</div>
+</ion-content>
