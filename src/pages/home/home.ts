@@ -35,7 +35,15 @@ export class HomePage {
 			}).catch((err) => {
 				console.error(err);
 			});
+	}
 
+	private deleteStuff(thing) {
+		this.db.deleteStuff(thing.id)
+			.then(() => {
+				this.getStuff();
+			}).catch((err) => {
+				console.error(err);
+			});
 	}
 
 }

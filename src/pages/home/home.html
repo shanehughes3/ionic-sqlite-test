@@ -18,14 +18,19 @@
 	<div>
 		<div *ngFor="let thing of things">
 			<ion-row>
-				<ion-col width-33>
+				<ion-col width-25>
 					{{thing.id}}
 				</ion-col>
-				<ion-col width-33>
+				<ion-col width-25>
 					{{thing.firstStuff}}
 				</ion-col>
-				<ion-col width-33>
+				<ion-col width-25>
 					{{thing.secondStuff}}
+				</ion-col>
+				<ion-col width-25>
+					<span (click)="deleteStuff(thing)">
+						&times;
+					</span>
 				</ion-col>
 			</ion-row>
 		</div>

@@ -25,9 +25,13 @@ export class DbService {
 				this.db.openDatabase({
 					name: "data.db",
 					location: "default"
-				}).then(() => this.createTables());
+				}).then(() => {
+					console.log("Created SQLite database");
+					this.createTables();
+				});
 			} else {
 				this.db = win.openDatabase("data.db", "1.0", "data", 1000000);
+				console.log("Created WebSQL database");
 				this.createTables();
 			}
 		});
@@ -74,6 +78,17 @@ export class DbService {
 			this.db.transaction((tx) => {
 				tx.executeSql("INSERT INTO stuff (firstStuff, secondStuff) VALUES (?, ?)",
 					[firstStuff, secondStuff], (_tx, results) => {
+						resolve(results);
+					});
+			}, (err) => { reject(err); });
+		});
+	}
+
+	public deleteStuff(stuffId) {
+		return new Promise((resolve, reject) => {
+			this.db.transaction((tx) => {
+				tx.executeSql("DELETE FROM stuff WHERE id = ?", [stuffId],
+					(_tx, results) => {
 						resolve(results);
 					});
 			}, (err) => { reject(err); });
